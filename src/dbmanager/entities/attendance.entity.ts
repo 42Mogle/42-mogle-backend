@@ -3,7 +3,7 @@ import { DayInfo } from "./day_info.entity";
 import { UserInfo } from "./user_info.entity";
 
 @Entity()
-@Unique(['userInfo', 'dayInfo'])
+//@Unique(['userInfo', 'dayInfo'])
 export class Attendance {
 	@PrimaryGeneratedColumn({ name: "id" })
 	id: number;

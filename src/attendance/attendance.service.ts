@@ -13,12 +13,12 @@ export class AttendanceService {
 	@Inject(OperatorService) private readonly operatorService: OperatorService;
 
 	async getUserButtonStatus(userInfo: UserInfo): Promise<number> {
-		if (this.isAvailableTime() === false) {
-			return ButtonStatus.NotAvailableTime;
-		}
-		else if (await this.haveAttendedToday(userInfo)) {
-			return ButtonStatus.AlreadyCheckedAttendance;
-		}
+		// if (this.isAvailableTime() === false) {
+		// 	return ButtonStatus.NotAvailableTime;
+		// }
+		// else if (await this.haveAttendedToday(userInfo)) {
+		// 	return ButtonStatus.AlreadyCheckedAttendance;
+		// }
 		// else if (await !this.isSetToDayWord()) {
 		// 	return (3)
 		// }
@@ -28,18 +28,18 @@ export class AttendanceService {
 	async AttendanceCertification(attendanceinfo: CreateAttendanceDto, userInfo: UserInfo) {
 		const todayWord: string = await this.dbmanagerService.getTodayWord();
 		const monthInto: MonthInfo = await this.dbmanagerService.getThisMonthInfo();
-		if (await this.haveAttendedToday(userInfo)) {
-			return ({
-				statusAttendance: 1,
-				errorMsg: "이미 출석 체크 했습니다."
-			});
-		}
-		if (attendanceinfo.todayWord !== todayWord) {
-			return ({
-				statusAttendance: 2,
-				errorMsg: "오늘의 단어가 다릅니다."
-			});
-		}
+		// if (await this.haveAttendedToday(userInfo)) {
+		// 	return ({
+		// 		statusAttendance: 1,
+		// 		errorMsg: "이미 출석 체크 했습니다."
+		// 	});
+		// }
+		// if (attendanceinfo.todayWord !== todayWord) {
+		// 	return ({
+		// 		statusAttendance: 2,
+		// 		errorMsg: "오늘의 단어가 다릅니다."
+		// 	});
+		// }
 		let monthlyUser = await this.dbmanagerService.getThisMonthlyUser(userInfo);
 		if (!monthlyUser)
 			monthlyUser = await this.dbmanagerService.createMonthlyUser(userInfo);
